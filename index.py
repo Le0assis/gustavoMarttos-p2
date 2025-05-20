@@ -200,6 +200,7 @@ def adicionarCurso(lista:dict ) -> None:
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
+#Menu Cursos
 def edicaoCursos(alunos:dict, cursos:dict):
 
     while True:
@@ -227,7 +228,7 @@ def edicaoCursos(alunos:dict, cursos:dict):
                 print("Escolha invalída")
                 pass
 
-
+#Mastricular cursos
 def matricularCurso(alunos, cursos):
     
     #Listar Alunos
@@ -271,13 +272,21 @@ def matricularCurso(alunos, cursos):
         print(escolhido["matricula"])
         break
 
+def removerCurso (alunos:dict, cursos:dict):
+    idCurso = str(input("Digite o código do curso: "))
 
+    valor_removido = cursos.pop('idCurso')
+
+    print(f"Curso {idCurso} de matéria {valor_removido["materia"]} foi deletado")
+    
 
 # listagemAlunos(alunos)
 # listagemCursos(cursos)
 # adicionarCurso(cursos)
 # adicionarAluno(alunos)
 
-# menu(alunos, cursos)
+menu(alunos, cursos)
 
-matricularCurso(alunos, cursos)
+# matricularCurso(alunos, cursos)
+
+# removerCurso(alunos, cursos)
