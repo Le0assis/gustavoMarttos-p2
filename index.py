@@ -32,7 +32,7 @@ alunos = {
         "idade": 13 ,
         "serie": 7,
         "periodo": "Manhã",
-        "matricula": []
+        "matricula": [1, 3, 4]
     },
     "3":{
         "nome": "Conceição" ,
@@ -64,6 +64,7 @@ def menu(alunos:dict, cursos: dict ) -> None:
             "[2] - Listar Cursos \n" \
             "[3] - Adicionar um Curso \n" \
             "[4] - Adicionar um Aluno \n" \
+            "[5] - Edição de Curso \n"\
             "[0] - Encerrar o programa")
         
         
@@ -102,6 +103,12 @@ def menu(alunos:dict, cursos: dict ) -> None:
                 time.sleep(1.5)
                 adicionarAluno(alunos)
 
+            case 5:
+                anima_pontos()
+                print("Editar curso")
+                time.sleep(1.5)
+                edicaoCursos(alunos, cursos)
+                
 
             case _:
                 print("Numero invalido!")
@@ -200,21 +207,30 @@ def adicionarCurso(lista:dict ) -> None:
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
+
+
 #Menu Cursos
 def edicaoCursos(alunos:dict, cursos:dict):
+    
 
-    while True:
+    while True: 
+
+        limpar_terminal()
 
         resposta = int(input(
-            "Selecione uma opção" \
-            "[0] - Voltar menu" \
-            "[1] - Matricular Curso" \
-            "[2] - desmatricular do Curso" \
-            "[3] - Excluir curso" \
-            "[4] - Listar cursos e seus alunos"))
+            "Selecione uma opção \n" \
+            "[0] - Voltar menu \n" \
+            "[1] - Matricular Curso \n" \
+            "[2] - desmatricular do Curso \n" \
+            "[3] - Excluir curso \n" \
+            "[4] - Listar uma sala do curso \n"\
+            "[5] - Listar cursos que um aluno faz \n"))
         
         match (resposta):
             case 0 :
+                print("Voltar menu inicial")
+                limpar_terminal()
+                time.sleep(1)
                 break
 
             case 1:
@@ -224,11 +240,24 @@ def edicaoCursos(alunos:dict, cursos:dict):
                 limpar_terminal()
                 matricularCurso(alunos, cursos)
 
+            case 2:
+                break
+
+            case 3:
+                anima_pontos()
+                print("Excluir curso")
+                time.sleep(1.5)
+                limpar_terminal()
+                removerCurso(alunos, cursos)
+
             case _:
                 print("Escolha invalída")
                 pass
 
-#Mastricular cursos
+
+#Menu de cursos ->
+
+#Mastricular cursos \ Opção 1
 def matricularCurso(alunos, cursos):
     
     #Listar Alunos
@@ -272,21 +301,51 @@ def matricularCurso(alunos, cursos):
         print(escolhido["matricula"])
         break
 
-def removerCurso (alunos:dict, cursos:dict):
-    idCurso = str(input("Digite o código do curso: "))
 
-    valor_removido = cursos.pop('idCurso')
+
+#Excluir Curso \ Opção 3
+def removerCurso (alunos:dict, cursos:dict):
+    idCurso = int(input("Digite o código do curso: "))
+
+    valor_removido = cursos.pop(str(idCurso))
+
+    limpar_terminal()
+    anima_pontos()
 
     print(f"Curso {idCurso} de matéria {valor_removido["materia"]} foi deletado")
-    
+
+    for alunoId, aluno in alunos.items():
+
+        if "matricula" in aluno and idCurso in aluno["matricula"]:
+            aluno['matricula'].remove(idCurso)
+            print(f"Aluno {aluno['nome']} desmatriculado do curso {idCurso}")
+
+    time.sleep(1)
+    print("-" * 30)
+    print(f"Curso {idCurso} desmatriculado com sucesso")
+    print("-" * 30)
+    print("Pressione qualquer tecla para sair")
+    msvcrt.getch()
+
+#Listar a sala de um curso \4
+def listaClasse(alunos: dict, cursos:dict):
+    idCurso = str(input("digite o código do curso que quer ver: "))
+
+    print(f"Curso escolhido {cursos[idCurso]}")
+
+    for aluno in alunos.values():
+        if "matricula" in aluno and int(idCurso) in aluno["matricula"]:
+            print(f"{aluno['nome']} está matriculado nesse curso") 
+        
 
 # listagemAlunos(alunos)
 # listagemCursos(cursos)
 # adicionarCurso(cursos)
 # adicionarAluno(alunos)
 
-menu(alunos, cursos)
+# menu(alunos, cursos)
 
 # matricularCurso(alunos, cursos)
 
 # removerCurso(alunos, cursos)
+listaClasse(alunos, cursos)
