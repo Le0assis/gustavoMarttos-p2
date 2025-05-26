@@ -32,7 +32,7 @@ alunos = {
         "idade": 13 ,
         "serie": 7,
         "periodo": "Manhã",
-        "matricula": [1, 3, 4]
+        "matricula": [1, 3, 2]
     },
     "3":{
         "nome": "Conceição" ,
@@ -57,18 +57,14 @@ def anima_pontos():
 
 def menu(alunos:dict, cursos: dict ) -> None:
     while True:
-        print(
-            "-" *30 ,
+        resposta = int(input("-" *30 ,
             "\n Selecione um item \n" \
             "[1] - Listar Alunos \n" \
             "[2] - Listar Cursos \n" \
             "[3] - Adicionar um Curso \n" \
             "[4] - Adicionar um Aluno \n" \
             "[5] - Edição de Curso \n"\
-            "[0] - Encerrar o programa")
-        
-        
-        resposta = int(input())
+            "[0] - Encerrar o programa"))
         match(resposta):
 
             case 0:
@@ -113,11 +109,8 @@ def menu(alunos:dict, cursos: dict ) -> None:
             case _:
                 print("Numero invalido!")
                 continue
-
-        
-            
-
-#Lista todos os alunos
+           
+#Lista todos os alunos \opção 1
 def listagemAlunos(lista: dict) -> None:
     limpar_terminal()
     for dados in lista.values():
@@ -125,7 +118,6 @@ def listagemAlunos(lista: dict) -> None:
         idade = dados["idade"]
         serie = dados["serie"]
         periodo = dados["periodo"]
-
         print("-" * 30)
         print(f"O nome é: {nome}")
         print(f"Tem {idade} anos")
@@ -136,42 +128,14 @@ def listagemAlunos(lista: dict) -> None:
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
-# Adiciona um aluno
-def adicionarAluno(lista:dict) -> None:
-    id = str(len(lista) + 1)
-
-    limpar_terminal()
-
-    print("Qual o nome do aluno: ")
-    nome = str(input())
-    print("Qual idade do aluno: ")
-    idade = int(input())
-    print("Qual serie dele: ")
-    serie = int(input())
-    print("Qual periodo: ")
-    periodo = str(input())
-
-    lista.update({
-        id:{
-            "nome": nome,
-            "idade": idade,
-            "serie": serie,
-            "periodo": periodo,
-        }
-    })
-    print(f"Aluno {nome} de codigo {id} adicionado com sucesso! \n")
-    print("Pressione qualquer tecla para sair")
-    msvcrt.getch()
-
-#Lista todos os cursos
+#Lista todos os cursos \opção 2
 def listagemCursos(lista: dict) -> None:
+
     limpar_terminal()
     for dados in lista.values():
         materia = dados["materia"]
         cargaHoraria = dados["cargahoraria"]
         professor = dados["professor"]
-
-
         print("-" * 30)
         print(f"A materia do curso é: {materia}")
         print(f"Tem {cargaHoraria} horas de aula")
@@ -181,19 +145,15 @@ def listagemCursos(lista: dict) -> None:
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
-#Adicionar um Curso
+#Adicionar um Curso \opção 3
 def adicionarCurso(lista:dict ) -> None:
 
     id = str(len(lista) + 1)
-
     limpar_terminal()
 
-    print("Qual a materia do Curso: ")
-    materia = str(input())
-    print("Qual a carga horaria: ")
-    cargahoraria = int(input())
-    print("Qual o professor: ")
-    professor = str(input())
+    materia = str(input("Qual a materia do Curso: "))    
+    cargahoraria = int(input("Qual a carga horaria: "))
+    professor = str(input("Qual o professor: "))
 
     lista.update({
         id: {
@@ -207,7 +167,30 @@ def adicionarCurso(lista:dict ) -> None:
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
+# Adiciona um aluno \opção 4
+def adicionarAluno(lista:dict) -> None:
+    id = str(len(lista) + 1)
 
+    limpar_terminal()
+
+    nome = str(input("Qual o nome do aluno: "))
+    idade = int(input("Qual idade do aluno: "))
+    serie = int(input("Qual serie dele: "))
+    periodo = str(input("Qual periodo: "))
+
+    lista.update({
+        id:{
+            "nome": nome,
+            "idade": idade,
+            "serie": serie,
+            "periodo": periodo,
+        }
+    })
+    print(f"Aluno {nome} de codigo {id} adicionado com sucesso! \n")
+    print("Pressione qualquer tecla para sair")
+    msvcrt.getch()
+
+#Menu de cursos ->
 
 #Menu Cursos
 def edicaoCursos(alunos:dict, cursos:dict):
@@ -221,10 +204,8 @@ def edicaoCursos(alunos:dict, cursos:dict):
             "Selecione uma opção \n" \
             "[0] - Voltar menu \n" \
             "[1] - Matricular Curso \n" \
-            "[2] - desmatricular do Curso \n" \
-            "[3] - Excluir curso \n" \
-            "[4] - Listar uma sala do curso \n"\
-            "[5] - Listar cursos que um aluno faz \n"))
+            "[2] - Excluir curso \n" \
+            "[3] - Listar uma sala do curso \n"))
         
         match (resposta):
             case 0 :
@@ -241,29 +222,30 @@ def edicaoCursos(alunos:dict, cursos:dict):
                 matricularCurso(alunos, cursos)
 
             case 2:
-                break
-
-            case 3:
                 anima_pontos()
                 print("Excluir curso")
                 time.sleep(1.5)
                 limpar_terminal()
                 removerCurso(alunos, cursos)
 
+            case 3:
+                anima_pontos()
+                print("Motrar sala do curso")
+                time.sleep(1.5)
+                limpar_terminal()
+                listaClasse(alunos, cursos)
+
+
             case _:
                 print("Escolha invalída")
                 pass
 
-
-#Menu de cursos ->
-
 #Mastricular cursos \ Opção 1
-def matricularCurso(alunos, cursos):
+def matricularCurso(alunos: dict, cursos:dict):
     
     #Listar Alunos
     while True:
-        print("Listar Alunos? [S/N]: ")
-        resposta = str(input()).upper()
+        resposta = str(input("Listar Alunos? [S/N]: ")).upper()
 
         if resposta == 'N':
             break
@@ -274,8 +256,7 @@ def matricularCurso(alunos, cursos):
             print("Resposta invalida!")
     #Escolha de Aluno
     while True:
-        print("Qual aluno quer editar: ")
-        idAluno = str(input())
+        idAluno = str(input("Qual aluno quer editar: "))
         if idAluno not in alunos:
             print("Numero invalido")
             pass
@@ -300,8 +281,6 @@ def matricularCurso(alunos, cursos):
         print(f"curso '{idCurso}' adicionado.")
         print(escolhido["matricula"])
         break
-
-
 
 #Excluir Curso \ Opção 3
 def removerCurso (alunos:dict, cursos:dict):
@@ -331,21 +310,13 @@ def removerCurso (alunos:dict, cursos:dict):
 def listaClasse(alunos: dict, cursos:dict):
     idCurso = str(input("digite o código do curso que quer ver: "))
 
-    print(f"Curso escolhido {cursos[idCurso]}")
+    print(f"Curso escolhido {cursos[idCurso]['materia']}")
 
     for aluno in alunos.values():
         if "matricula" in aluno and int(idCurso) in aluno["matricula"]:
             print(f"{aluno['nome']} está matriculado nesse curso") 
         
 
-# listagemAlunos(alunos)
-# listagemCursos(cursos)
-# adicionarCurso(cursos)
-# adicionarAluno(alunos)
-
 # menu(alunos, cursos)
 
-# matricularCurso(alunos, cursos)
-
-# removerCurso(alunos, cursos)
 listaClasse(alunos, cursos)
