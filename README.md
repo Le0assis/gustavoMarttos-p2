@@ -7,7 +7,7 @@
 
 ## Descrição do Projeto
 
-Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com o objetivo de simular a administração básica de uma escola. O sistema permite gerenciar cursos, alunos e a relação entre eles através de um menu interativo e amigável no terminal.
+Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com o objetivo de simular a administração básica de uma escola. O sistema permite gerenciar cursos, alunos e a relação entre eles através de um menu interativo no terminal.
 
 
 
@@ -21,7 +21,7 @@ Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com 
 
 1. Abra o terminal na pasta do projeto.
 
-2. Execute o arquivo principal com:
+2. Execute o arquivo principal com:  
 -   `python index.py` ou `py index.py`
 
 3. Com o sistema agora iniciado você terá essas opções:
@@ -38,16 +38,16 @@ Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com 
 
 4. Escolha sua função:
 
-    1. Será retornado a você uma lista de todos alunos cadastrados  
-    2. Será retornado a você uma lista de todos os cursos cadastrados  
-    3. Fará perguntas para cadastrar o curso, assim:
+    [1] Será retornado a você uma lista de todos alunos cadastrados  
+    [2] Será retornado a você uma lista de todos os cursos cadastrados  
+    [3] Fará perguntas para cadastrar o curso, assim:
 
-        **Qual a matéria do Curso:** Estrutura de Dados  
-        **Qual a carga horária:** 80  
-        **Qual o professor:** Gustavo Marttos  
+        Qual a matéria do Curso: Estrutura de Dados  
+        Qual a carga horária: 80  
+        Qual o professor: Gustavo Marttos  
         - Curso Estrutura de Dados de código 10 adicionado com sucesso!
 
-    4. Fará perguntas para cadastrar o aluno, assim:  
+    [4] Fará perguntas para cadastrar o aluno, assim:  
         **Qual o nome do aluno:** Paulo  
         **Qual idade do aluno:** 17  
         **Qual série dele:** 3  
@@ -56,7 +56,7 @@ Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com 
 
     > Perceba que sempre há a confirmação no final destas funções
 
-    5. Entrará em um outro menu focado exclusivamente para edição de cursos:
+    [5] Entrará em um outro menu focado exclusivamente para edição de cursos:
 
         Selecione uma opção  
         [0] - Voltar menu  
@@ -64,57 +64,75 @@ Este projeto é um sistema de linha de comando (CLI) desenvolvido em Python com 
         [2] - Excluir curso  
         [3] - Listar uma sala do curso
 
-        1. Ira perguntar se quer uma listagem de alunos em seguida opedira informações
-            **Listar Alunos? [S/N]:** n  
+        [1] **Ira perguntar se quer uma listagem de alunos em seguida opedira informações**
+
+            Listar Alunos? [S/N]: n  
             **Qual aluno quer editar:** 2  
-            **Aluno escolhido:** Bianca  
+            Aluno escolhido: Bianca  
             **Qual curso quer adicionar (ou 'sair' para terminar)?** 5  
-            **Curso '5' adicionado.**  
+            Curso '5' adicionado.  
             **Qual curso quer adicionar (ou 'sair' para terminar)?** 6  
-            **Curso '6' adicionado.**  
-            **Qual curso quer adicionar (ou 'sair' para terminar)?** sair 
+            Curso '6' adicionado.  
+            **Qual curso quer adicionar (ou 'sair' para terminar)?** sair  
 
-            >Sistema perguntara qual curso até usuario digitar sair, um numero errado ou um curso ja cadastrado no aluno
+            >Sistema perguntara qual curso até usuario digitar sair, um número errado ou um curso já cadastrado no aluno
         
-        2. Ira perguntar o código do curso que deseja excluir e após isso vai retornar todos os alunos desmatriculados
+        [2] Irá perguntar o código do curso que deseja excluir e após isso vai retornar todos os alunos desmatriculados
 
-           **Digite o código do curso:** 2
+           **Digite o código do curso:** 2  
 
-            Curso 2 de matéria portugues foi deletado
-            Aluno Adriano desmatriculado do curso 2
-            Aluno Bianca desmatriculado do curso 2
-            Aluno Conceição desmatriculado do curso 2
-            Aluno Eduarda desmatriculado do curso 2
-            Aluno Hugo desmatriculado do curso 2
-            ------------------------------
-            Curso 2 desmatriculado com sucesso
+            Curso 2 de matéria portugues foi deletado  
+            Aluno Adriano desmatriculado do curso 2  
+            Aluno Bianca desmatriculado do curso 2  
+            Aluno Conceição desmatriculado do curso 2  
+            Aluno Eduarda desmatriculado do curso 2  
+            Aluno Hugo desmatriculado do curso 2  
+            ------------------------------  
+            Curso 2 desmatriculado com sucesso  
             ------------------------------
         
-        3. Ira perguntar que curso deseja ver e em seguida retrnar os alunos matriculados nesse curso
+        [3] Irá perguntar que curso deseja ver e em seguida retornar os alunos matriculados nesse curso
 
-            **digite o código do curso que quer ver:** 3
+            **Digite o código do curso que quer ver:** 3  
 
-            Curso escolhido quimica
-            Adriano está matriculado nesse curso
-            Bianca está matriculado nesse curso
-            Conceição está matriculado nesse curso
-            Gabriela está matriculado nesse curso
-            ------------------------------
+            Curso escolhido quimica  
+            Adriano está matriculado nesse curso  
+            Bianca está matriculado nesse curso  
+            Conceição está matriculado nesse curso  
+            Gabriela está matriculado nesse curso  
+            ------------------------------  
             Pressione qualquer tecla para sair
 
 
 
 ## Principais funções
 
--   **Menu** Uma função que usando loop While e match case permite ao usuario escolher sua ação, usnica forma de sair é digitando 0
-opção que a própria função mostra
-    A função **edicaoCursos** é bem parecida também, tendo a mesma sintaxe, a diferença é que nessa função ao sair dela voltara ao menu inicial por ta hospedada nela
-essa função serve para dar opções mais voltadas a edição de cursos
+- **Menu**  
+  Uma função que usa loop `while` e `match case` pra deixar o usuário escolher o que quer fazer. A única forma de sair é digitando 0, e isso já é mostrado ali direto no menu.  
+  A função `edicaoCursos` é parecida também, segue a mesma lógica, mas é focada só na parte de edição de cursos. Quando sai dela, volta pro menu inicial porque ela tá dentro dele.  
 
-- **anima_pontos**, Essa função é usada para melhorar a estética e a imersão do programa. Ela imprime três pontos sequenciais com pequeno atraso entre eles, criando um efeito de "carregando" 
+- **anima_pontos**  
+  Essa função é só pra dar um toque visual mais legal. Ela mostra três pontinhos com um tempinho entre eles, tipo "carregando...".
 
-- **limpar_terminal**, outra unção só para estética, é chamada em toda escolha de funcionalidade no código, ela limpa todo o terminal então não fica um chat inteiro em cascata, fica bem melhor de se ver
+- **limpar_terminal**  
+  Também é só pra deixar o visual melhor. Ela apaga tudo do terminal antes de mostrar a nova parte, assim não vira uma bagunça com tudo empilhado.  
 
-- **msvcrt.getch()** uma função pronta de uma biblioteca no python, ela é a chave pra outras duas funções citadasantes, essa função congela todo o código até ter a entrada de alguma tecla do teclado (Qualquer uma), ja que usei uma função para limpar o terminal precisava de uma para "esperar liberação do usuario", assim fazendo ele ter que apertar uma tecla para prosseguir com o código
+- **msvcrt.getch()**  
+  Essa é uma função pronta da biblioteca `msvcrt`. Ela trava o código até o usuário apertar alguma tecla. Eu usei isso junto com o limpar terminal, pra dar tempo da pessoa ler antes de mudar a tela.  
 
-- **listagemCursos** e **listagemAlunos** outras duas funções principais, são chamadas diversas vezes no decorrer do código, sendo chaada pelo usuario ou não, serve para listar cursos e alunos respectivamente, como o próprio nome delas diz, por serem estrutura de dados como dicionarios, usei um for para percorrer cada item e value() para retornar o valor desses items, então com a desempacotação exibo os dados de cada um individualmente
+- **listagemCursos** e **listagemAlunos**  
+  São usadas várias vezes no código, tanto quando o usuário chama como quando o sistema precisa mostrar alguma coisa. Elas percorrem os dicionários e usam `.values()` com um `for` pra listar certinho cada item cadastrado.
+
+## Justificativa das Estruturas de Dados
+
+- **Dicionários (`dict`)**  
+  Usei dicionários pra representar tanto os cursos quanto os alunos, porque com eles dá pra guardar tudo usando um código como chave, tipo o ID. Isso facilita muito na hora de buscar, editar ou listar, já que eu acesso direto o que preciso.
+
+- **Deque (collections.deque) dentro dos dicionários**  
+  No lugar de listas comuns, usei o deque do Python dentro dos dicionários dos alunos pra guardar os cursos que cada um tá matriculado. O motivo disso é que o deque tem melhor performance quando precisa adicionar ou remover elementos, especialmente se for no começo ou no meio da estrutura, o que pode acontecer quando um aluno entra ou sai de um curso. Então é uma estrutura mais eficiente pra esse tipo de operação.
+
+- **Laços `for` e `.values()`**  
+  Quando vou listar os alunos ou os cursos, uso `for` com `.values()` pra pegar só os valores dos dicionários e poder mostrar certinho no terminal. Uso também a técnica de desempacotar, pra puxar todos os dados de uma vez e mostrar um por um.
+
+- **Funções separadas**  
+  Separei tudo em funções diferentes (tipo listar, adicionar, editar), porque isso deixa o código mais limpo, organizado, e bem mais fácil de mexer depois se quiser melhorar alguma parte. Também posso usar essas funções várias vezes sem ter que repetir código.

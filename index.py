@@ -392,6 +392,5 @@ def listaClasse(alunos: dict, cursos:dict):
     print("Pressione qualquer tecla para sair")
     msvcrt.getch()
 
-
-    
-menu(alunos, cursos)
+if __name__ == "__main__":
+    menu(alunos, cursos)
